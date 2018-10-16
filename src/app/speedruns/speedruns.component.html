@@ -1,0 +1,87 @@
+<section id="wrapper">
+  <header>
+    <div class="inner">
+      <h2>Speedruns</h2>
+      <p>How quickly can you beat the game?</p>
+    </div>
+  </header>
+  <section class="wrapper style1">
+    <div class="inner">
+      <h2>Personal Bests</h2>
+      <app-spinner *ngIf="!personalBests"></app-spinner>
+      <table *ngIf="personalBests">
+        <thead>
+          <th>Game</th>
+          <th>Category</th>
+          <th>Time</th>
+          <th>Place</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pb of personalBests">
+            <td>
+              <a [href]="pb.game.data.weblink">{{ pb.game.data.names.international }}</a>
+            </td>
+            <td [title]="pb.category.data.rules">
+              <a [href]="pb.category.data.weblink">{{ pb.category.data.name }}</a>
+            </td>
+            <td>
+              <a [href]="pb.run.weblink">{{ pb.run.times.primary_t | timer }}</a>
+            </td>
+            <td>{{ pb.place | ordinal }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrapper style2 alt">
+    <div class="inner">
+        <h2>Speedruns</h2>
+        <app-spinner *ngIf="!speedruns"></app-spinner>
+        <table *ngIf="speedruns">
+          <thead>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Time</th>
+            <th>Game</th>
+            <th>Video</th>
+            <th>Splits</th>
+            <th>Status</th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let run of speedruns">
+              <tr>
+                <td>{{ run.date | date }}</td>
+                <td>{{ run.category.data.name }}</td>
+                <td>
+                  <a [href]="run.weblink">{{ run.times.primary_t | timer }}</a>
+                </td>
+                <td>{{ run.game.data.names.international }}</td>
+                <td *ngIf="run.videos.links.length > 0">
+                  <a [href]="run.videos.links[0].uri">YouTube</a>
+                </td>
+                <td *ngIf="run.splits">
+                  <a [href]="run.splits.uri">{{ run.splits.rel }}</a>
+                </td>
+                <td>{{ run.status.status }}</td>
+  
+              </tr>
+              <ng-container *ngIf="run.splitData && false">
+                <tr>
+                  <th>Name</th>
+                  <th>Split Time</th>
+                  <th>Run Time</th>
+                </tr>
+                <tr *ngFor="let split of run.splitData.run.splits" [ngClass]="{ 'gold': split.gold }">
+                  <td>{{ split.name }}</td>
+                  <td>{{ split.duration | timer }}</td>
+                  <td>{{ split.finish_time | timer }}</td>
+                </tr>
+              </ng-container>
+            </ng-container>
+  
+          </tbody>
+        </table>
+    </div>
+  </section>
+</section>

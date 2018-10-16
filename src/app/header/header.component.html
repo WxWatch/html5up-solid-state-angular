@@ -1,7 +1,9 @@
 <!-- Header -->
-<header id="header" class="alt">
-  <h1><a href="index.html">Solid State</a></h1>
+<header id="header" [ngClass]="{'alt': !isScrolled}">
+  <h1><a href="index.html">WxWatch</a></h1>
   <nav>
-    <a href="#menu">Menu</a>
+    <a [routerLink]="['/']" routerLinkActive="router-link-active">Home</a>
+    <a [routerLink]="['/speedruns']" routerLinkActive="router-link-active">Speedruns</a>
+    <a [routerLink]="['/projects']" routerLinkActive="router-link-active" >Projects</a>
   </nav>
 </header>

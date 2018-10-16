@@ -19,12 +19,19 @@
         width: _size(inner);
     }
 
+    .social-links.logo {
+        a {
+            border: none;
+        }
+        
+        .icon {
+            cursor: pointer;
+            margin: 0 8px 0 0;
+            text-decoration: none;
+        }
+    }
+
     .logo {
-        @include vendor("transition", ("opacity 2s ease", "transform 1s ease"));
-
-        @include vendor("transform", "translateY(0)");
-
-        opacity: 1;
         margin: 0 0 (_size(element-margin) * 0.65) 0;
 
         .icon {
@@ -41,12 +48,6 @@
     }
 
     h2 {
-        @include vendor("transition", ("opacity 0.5s ease", "transform 0.5s ease", "filter 0.25s ease"));
-
-        @include vendor("transform", "translateX(0)");
-        @include vendor("transition-delay", "0.65s");
-        @include vendor("filter", "blur(0)");
-
         opacity: 1;
         border-bottom: solid 2px _palette(border);
         font-size: 2.25em;
@@ -55,13 +56,6 @@
     }
 
     p {
-        @include vendor("transition", ("opacity 0.5s ease", "transform 0.5s ease", "filter 0.25s ease"));
-
-        @include vendor("transform", "translateX(0)");
-        @include vendor("transition-delay", "0.8s");
-        @include vendor("filter", "blur(0)");
-
-        opacity: 1;
         font-family: _font(family-heading);
         font-size: 1em;
         font-weight: _font(weight-heading);
@@ -111,29 +105,6 @@
 
         p {
             font-size: 0.8em;
-        }
-    }
-
-
-    body.is-preload & {
-        .logo {
-            @include vendor("transform", "translateY(0.5em)");
-
-            opacity: 0;
-        }
-
-        h2 {
-            opacity: 0;
-
-            @include vendor("transform", "translateX(0.25em)");
-            @include vendor("filter", "blur(2px)");
-        }
-
-        p {
-            opacity: 0;
-
-            @include vendor("transform", "translateX(0.5em)");
-            @include vendor("filter", "blur(2px)");
         }
     }
 }
